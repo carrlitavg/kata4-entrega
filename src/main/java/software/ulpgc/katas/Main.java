@@ -2,6 +2,7 @@ package software.ulpgc.katas;
 
 import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
+import software.ulpgc.katas.infrastructure.adapters.endpoints.HolaEndPoint;
 
 public class Main {
     private static final int PORT = 8081;
@@ -11,6 +12,6 @@ public class Main {
     }
 
     private static void create(JavalinConfig config) {
-        config.routes.get("/hola", c-> c.result("Hola Mundo"));
+        config.routes.get("/hola/{name}", context-> HolaEndPoint.use(context).execute());
     }
 }
